@@ -1,0 +1,41 @@
+{
+  "name": "restfully",
+  "version": "1.0.0",
+  "description": "REST api with JWT",
+  "main": "app.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=dev nodemon server.js",
+    "prod": "cross-env NODE_ENV=prod node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krstic-duci/restfully.git"
+  },
+  "keywords": [
+    "Node.js",
+    "Express",
+    "Mongoose",
+    "REST api",
+    "JWT"
+  ],
+  "author": "el_duche",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krstic-duci/restfully/issues"
+  },
+  "homepage": "https://github.com/krstic-duci/restfully#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "chalk": "^2.4.1",
+    "cors": "^2.8.4",
+    "cross-env": "^5.2.0",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "helmet": "^3.13.0",
+    "mongoose": "^5.2.15",
+    "referrer-policy": "^1.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}

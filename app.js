@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const referrerPolicy = require('referrer-policy');
 const mongoose = require('mongoose');
+const format = require('date-fns/format');
 const app = express();
 
 // findAndModify method is deprecated in mongodb native driver
@@ -28,6 +29,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.set('env', process.env.NODE_ENV);
+
+// Set locals for date-fns/format
+app.locals.format = format;
 
 // Use Routes
 app.use('/api', require('./api/routes/index'));

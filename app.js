@@ -26,8 +26,9 @@ console.log('Connected to DB');
 app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
 app.use(helmet());
 app.use(cors());
+app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.set('env', process.env.NODE_ENV);
 
 // Set locals for date-fns/format
@@ -39,7 +40,7 @@ app.use('/api/products', require('./api/routes/products'));
 app.use('/api/orders', require('./api/routes/orders'));
 
 app.use((req, res, next) => {
-  const error = new Error('Sorry, the page doesn\'t exists');
+  const error = new Error('Sorry, the page doesn\'t exists. Please try something else...');
   error.status = 404;
   next(error);
 });

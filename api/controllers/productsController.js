@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const chalk = require('chalk');
 const Product = require('../models/Products');
 
+/**
+ * @description List all products
+ * @returns {JSON}
+ */
 const get = (req, res, next) => {
   Product.find()
     .select('-__v')
@@ -36,12 +40,19 @@ const get = (req, res, next) => {
     });
 };
 
+/**
+ * @description Create new order
+ * @param {String} name
+ * @param {String} price
+ * @param {String} productImage
+ * @returns {JSON}
+ */
 const create = (req, res, next) => {
   const product = new Product({
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
     price: req.body.price,
-    productImage: req.file.path
+    productImage: req.file.path || null
   });
   product.save()
     .then(result => {
@@ -65,6 +76,11 @@ const create = (req, res, next) => {
     });
 };
 
+/**
+ * @description Find a single product by ID and list all of the details
+ * @param {String} productId
+ * @returns {JSON}
+ */
 const getSingleProduct = (req, res, next) => {
   const productId = req.params.productId;
 
@@ -100,6 +116,13 @@ const getSingleProduct = (req, res, next) => {
     });
 };
 
+/**
+ * @description Find a single product by ID and update it (either name or price)
+ * @param {String} productId
+ * @param {Object} name
+ * @param {Object} price
+ * @returns {JSON}
+ */
 const patchSingleProduct = (req, res, next) => {
   const updateOps = {};
   for (const key of Object.keys(req.body)) {
@@ -119,6 +142,11 @@ const patchSingleProduct = (req, res, next) => {
     });
 };
 
+/**
+ * @description Find a single product by ID and remove it from DB
+ * @param {String} productId
+ * @returns {JSON}
+ */
 const removeSingleProduct = (req, res, next) => {
   Product.findByIdAndRemove({_id: req.params.productId})
     .exec()

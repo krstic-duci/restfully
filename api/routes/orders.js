@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const ordersController = require('../controllers/ordersController');
+const auth = require('../middleware/auth');
 
 router.route('/')
-  .get(ordersController.get)
-  .post(ordersController.create);
+  .get(auth, ordersController.get)
+  .post(auth, ordersController.create);
 
 router.route('/:orderId')
-  .get(ordersController.getSingleOrder)
-  .delete(ordersController.removeSingleOrder);
+  .get(auth, ordersController.getSingleOrder)
+  .delete(auth, ordersController.removeSingleOrder);
 
 module.exports = router;

@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
   } catch (err) {
     return res.status(401).json({
       success: false,
-      message: 'Auth failed'
+      message: 'Auth failed, please check your token'
     });
   }
 };

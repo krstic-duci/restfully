@@ -30,7 +30,6 @@ const signUp = (req, res, next) => {
 
             user.save()
               .then(result => {
-                console.log(result);
                 res.status(201).json({
                   success: true,
                   message: 'User created'
@@ -38,7 +37,7 @@ const signUp = (req, res, next) => {
               })
               .catch(err => {
                 console.error(chalk.black.bgRed(err));
-                res.status(500).json({success: false, error: err});
+                res.status(500).json({success: false, error: err.message});
               });
           }
         });
@@ -63,14 +62,14 @@ const login = (req, res, next) => {
       if (user.length < 1) {
         return res.status(401).json({
           success: false,
-          message: 'Auth failed'
+          message: 'Auth failed, email don\'t exist in DB'
         });
       }
       bcrypt.compare(req.body.password, user[0].password, (err, result) => {
         if (err) {
           return res.status(401).json({
             success: false,
-            message: 'Auth failed'
+            message: 'Auth failed, please enter the correct password'
           });
         }
         if (result) {
@@ -90,7 +89,7 @@ const login = (req, res, next) => {
         }
         res.status(401).json({
           success: false,
-          message: 'Auth failed'
+          message: 'Auth failed, please check your email and/or password'
         });
       });
     })

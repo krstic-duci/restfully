@@ -11,13 +11,19 @@ const get = (req, res, next) => {
     .select('-__v')
     .exec()
     .then(docs => {
+      let checkForProductImg;
       const listOfProducts = {
         count: docs.length,
         products: docs.map(doc => {
+          if (!doc.productImage) {
+            checkForProductImg = '';
+          } else {
+            checkForProductImg = `http://localhost:4050/${doc.productImage}`;
+          }
           return {
             name: doc.name,
             price: doc.price,
-            productImage: `http://localhost:4050/${doc.productImage}`,
+            productImage: checkForProductImg,
             _id: doc._id,
             description: {
               type: 'GET',
@@ -48,11 +54,17 @@ const get = (req, res, next) => {
  * @returns {JSON}
  */
 const create = (req, res, next) => {
+  let checkFilePath;
+  if (!req.file) {
+    checkFilePath = '';
+  } else {
+    checkFilePath = req.file.path;
+  }
   const product = new Product({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
     price: req.body.price,
-    productImage: req.file.path || null
+    productImage: checkFilePath
   });
   product.save()
     .then(result => {

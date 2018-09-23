@@ -68,6 +68,7 @@ const get = (req, res, next) => {
 
 /**
  * @description Create new order
+ * @param {String} productId
  * @returns {JSON}
  */
 const create = (req, res, next) => {
@@ -127,7 +128,8 @@ const create = (req, res, next) => {
 };
 
 /**
- * @description Get the single order collection
+ * @description Get the single order
+ * @param {String} orderId
  * @returns {JSON}
  */
 const getSingleOrder = (req, res, next) => {
@@ -164,9 +166,11 @@ const getSingleOrder = (req, res, next) => {
       res.status(500).json({success: false, error: err.message});
     });
 };
+
 /**
  * @description Delete the order document by orderId
- * @param {String} 'orderId'
+ * @param {String} orderId
+ * @returns {JSON}
  */
 const removeSingleOrder = (req, res, next) => {
   Order.findByIdAndRemove(req.params.orderId)

@@ -3,7 +3,7 @@
 > REST API (simulation) with JWT for supporting online grocery store
 
 ## API Overview
-All endpoints results are in JSON format. Folder structure follows MVC pattern, and the default port for REST API is _:4050_. 
+All endpoints results are in JSON format. Folder structure follows MVC pattern, and the default port for REST API is _:4050_. This readme file will include some sample of returned values, either with true or false value. Token is meant to be passed in header or `Authorization: <example.token.jwt>`
 
 ## Endpoints
 
@@ -56,38 +56,178 @@ Returns
 
 #### Login user
 ```
-GET /api/users/login
+POST /api/users/login
 ```
 Parameters
 
 Name | Type |
 --- | --- |
-*GET* | `/api/` |
+email | `string` |
+password | `string` |
 
+Returns
+``` javascript
+{
+    "success": true,
+    "message": "Auth successful",
+    "token": "<example.token.jwt>"
+}
+```
 #### Create new user
 ```
-GET /api/users/signup
+POST /api/users/signup
 ```
 Parameters
+
+Name | Type |
+--- | --- |
+email | `string` |
+password | `string` |
+
+Returns
+``` javascript
+{
+    "success": false,
+    "message": "Email already taken"
+}
+```
 
 #### Remove user
 ```
-GET /api/users/:userId
+DELETE /api/users/:userId
 ```
 Parameters
+
+Name | Type |
+--- | --- |
+email | `string` |
+password | `string` |
+token | `string` |
+
+Returns
+``` javascript
+{
+    "success": true,
+    "message": "User deleted"
+}
+```
 
 ### Products
 
 #### List all products
+```
+GET /api/products
+```
+Parameters
 
+Name | Type |
+--- | --- |
+none | none |
+
+Returns
+``` javascript
+{
+  type: 'GET',
+  endpoint: 'http://localhost:4050/api/products',
+  description: 'List of all products',
+  params: {},
+  protected_route: 'no',
+  returned_values: {
+    count: '<example_number>',
+    products: [
+      {},
+      {}
+    ]
+  }
+}
+```
 #### Create new product
+```
+POST /api/products
+```
+Parameters
 
+Name | Type | |
+--- | --- | --- |
+name | `string` |  |
+price | `number` | 
+productImage | `file` | optional |
+
+Returns
+``` javascript
+{
+  type: 'POST',
+  endpoint: 'http://localhost:4050/api/products',
+  description: 'Create new order',
+  params: {
+    token: 'required',
+    name: '{String} -> required',
+    price: '{Number} -> required',
+    productImage: '{File} -> optional'
+  },
+  protected_route: 'yes',
+  returned_values: {
+    _id: '<1>',
+    name: '<example>',
+    price: '<example>',
+    productImage: '<example>'
+  }
+}
+```
 #### Single product
+```
+GET /api/products
+```
+Parameters
 
+Name | Type |
+--- | --- |
+email | `string` |
+password | `string` |
+token | `string` |
+
+Returns
+``` javascript
+{
+
+}
+```
 #### Update product
+```
+GET /api/products
+```
+Parameters
 
+Name | Type |
+--- | --- |
+email | `string` |
+password | `string` |
+token | `string` |
+
+Returns
+``` javascript
+{
+
+}
+```
 #### Delete product
+```
+GET /api/products
+```
+Parameters
 
+Name | Type |
+--- | --- |
+email | `string` |
+password | `string` |
+token | `string` |
+
+Returns
+``` javascript
+{
+
+}
+```
 
 ### Orders
 

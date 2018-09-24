@@ -145,7 +145,7 @@ Parameters
 
 Name | Type | |
 --- | --- | --- |
-name | `string` |  |
+name | `string` |
 price | `number` | 
 productImage | `file` | optional |
 token | `string` |
@@ -192,7 +192,7 @@ PATCH /api/products/:productId
 ```
 Parameters
 
-Name | Type |
+Name | Type | |
 --- | --- | --- |
 name | `string` | optional |
 price | `number` | optional |
@@ -253,11 +253,11 @@ POST /api/orders
 ```
 Parameters
 
-Name | Type |
+Name | Type | |
 --- | --- | --- |
 token | `string` |
 productId | `string` |
-quantity | `number` | optional
+quantity | `number` | optional |
 
 Returns: _(example with falsy value and status code 500 Server error)_
 ``` javascript
@@ -273,7 +273,7 @@ GET /api/orders/:orderId
 Parameters
 
 Name | Type |
---- | --- | --- |
+--- | --- |
 token | `string` |
 orderId | `string` |
 
@@ -303,7 +303,7 @@ GET /api/orders/:orderId
 Parameters
 
 Name | Type |
---- | --- | --- |
+--- | --- |
 token | `string` |
 orderId | `string` |
 

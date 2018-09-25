@@ -16,7 +16,7 @@ const signUp = (req, res, next) => {
     .exec()
     .then(user => {
       if (user.length >= 1) {
-        return res.status(422).json({message: 'Email already taken'});
+        return res.status(422).json({success: false, message: 'Email already taken'});
       } else {
         bcrypt.hash(req.body.password, 12, (err, hash) => {
           if (err) {

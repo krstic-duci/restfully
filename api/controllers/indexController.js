@@ -67,7 +67,7 @@ const listOfEndpoints = (req, res, next) => {
       },
       create: {
         type: 'POST',
-        endpoint: 'http://localhost:4050/api/orders',
+        endpoint: 'http://localhost:4050/api/products',
         description: 'Create new order',
         params: {
           token: 'required',
